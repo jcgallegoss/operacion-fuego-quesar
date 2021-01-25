@@ -1,5 +1,5 @@
-import { getJsonSatellites, GetLocation } from '../../controllers/satelites';
-import { CASO_1, CASO_2, CASO_3 } from "../constants";
+import { getJsonSatellites, GetLocation, validLenMessages, GetMessage } from '../../controllers/satelites';
+import { CONST_1, CONST_2, CONST_3, CONST_4, CONST_5, CONST_6} from "../constants";
 import request from 'supertest';
 import dotenv from "dotenv";
 import app from '../../app';
@@ -8,22 +8,22 @@ dotenv.config();
 describe('Satalites', () => {
 
   const port = process.env.PORT;
-  const server = app.listen(port);
+  app.listen(port);
 
-  test('PRUEBA 1: Se crea obj satelites', async () => {
-    const response = getJsonSatellites(CASO_1.satellites);
+  test('TEST 1: Se crea obj satelites', async () => {
+    const response = getJsonSatellites(CONST_1.satellites);
     expect(response).toBeDefined();
   });
 
-  test('PRUEBA 2: Calcula coordenadas desde ditancias', async () => {
-    const response = GetLocation(CASO_2.distanceKenobi, CASO_2.distanceSkywalker, CASO_2.distanceSato);
+  test('TEST 2: Calcula coordenadas desde ditancias', async () => {
+    const response = GetLocation(CONST_2.distanceKenobi, CONST_2.distanceSkywalker, CONST_2.distanceSato);
     expect(response).toBeDefined();
   });
 
-  test('PRUEBA 3: Prueba del servicio topsecret encontro coordenadas', async (done) => {
+  test('TEST 3: Prueba del servicio topsecret encontro coordenadas', async (done) => {
     request(app)
       .post('/api/topsecret')
-      .send(CASO_1)
+      .send(CONST_1)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
@@ -33,10 +33,10 @@ describe('Satalites', () => {
       });
   });
 
-  test('PRUEBA 4: Prueba del servicio topsecret no encontro coordenadas', async (done) => {
+  test('TEST 4: Prueba del servicio topsecret no encontro coordenadas', async (done) => {
     request(app)
       .post('/api/topsecret')
-      .send(CASO_3)
+      .send(CONST_3)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(404)
@@ -45,4 +45,28 @@ describe('Satalites', () => {
           return done();
       });
   });
+
+  test('TEST 5: Se prueba el llenado de vacios a array message', async () => {
+    const response = validLenMessages(CONST_4.maxLen, CONST_4.arr);
+    expect(response.length).toBe(CONST_4.maxLen);
+  });
+
+  test('TEST 6: Se prueba funcion que decifra el mensje', async () => {
+    const response = GetMessage(CONST_5.messagesKenobi, CONST_5.messagesSkywalker, CONST_5.messagesSato);
+    expect(response).toBe('este es un mensaje secreto');
+  });
+
+  test('TEST 7: No se pudo decifrar el mensje', async (done) => {
+    request(app)
+      .post('/api/topsecret')
+      .send(CONST_6)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .end(function(err, res) {
+          if (err) return done(err);
+          return done();
+      });
+  });
+
 });

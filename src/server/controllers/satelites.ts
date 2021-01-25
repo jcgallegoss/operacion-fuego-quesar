@@ -5,15 +5,20 @@ const topsecretSOS = (req: Request, res: Response) => {
   try {
     const satelites = getJsonSatellites(req.body.satellites);
     const position = GetLocation(satelites.kenobi.distance, satelites.skywalker.distance, satelites.sato.distance);
+    const message = GetMessage(satelites.kenobi.message, satelites.skywalker.message, satelites.sato.message);
 
     if(!position.x || !position.y){
-      throw Error ('No se pudo localizar')
+      throw Error ('No se pudo localizar');
+    };
+
+    if(!message || message === ''){
+      throw Error ('No se pudo decifrar el mensaje');
     };
 
     res.status(200).send({
-        "position": position,
-        "message": ''
-     });
+      "position": position,
+      "message": message
+    });
   } catch (e) {
     res.status(404).send({status: 'ERROR', e: e.message});
   }
@@ -48,6 +53,34 @@ const GetLocation = (distanceKenobi: number, distanceSkywalker: number, distance
   };
 }
 
+const GetMessage = (messagesKenobi: string[], messagesSkywalker: string[], messagesSato: string[]) => {
+  const clearMessage: string[] = [];
+  const maxLength = Math.max(messagesKenobi.length, messagesSkywalker.length, messagesSato.length);
+
+  messagesKenobi = validLenMessages(maxLength, messagesKenobi);
+  messagesSkywalker = validLenMessages(maxLength, messagesSkywalker);
+  messagesSato = validLenMessages(maxLength, messagesSato);
+
+
+  for (let i = 0; i < maxLength; i++) {
+    const words:string [] = [];
+
+    if(messagesKenobi[i] !== '' && !words.includes(messagesKenobi[i])){
+      words.push(messagesKenobi[i]);
+    }
+    if(messagesSkywalker[i] !== '' && !words.includes(messagesSkywalker[i])){
+      words.push(messagesSkywalker[i]);
+    }
+    if(messagesSato[i] !== '' && !words.includes(messagesSato[i])){
+      words.push(messagesSato[i]);
+    }
+
+    clearMessage.push(words.join(' '));
+  }
+
+  return clearMessage.join(' ');
+}
+
 const getJsonSatellites = (satellites: any) => {
   const objSatelites: any = {};
 
@@ -61,8 +94,14 @@ const getJsonSatellites = (satellites: any) => {
   return objSatelites;
 }
 
+const validLenMessages = (maxLen: number, arr: string[]) => {
+  return arr.concat(Array.from({length: (maxLen-arr.length)}, () => ''));
+}
+
 export { 
   topsecretSOS,
   getJsonSatellites,
-  GetLocation
+  GetLocation,
+  validLenMessages,
+  GetMessage
 };
