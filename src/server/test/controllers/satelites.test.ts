@@ -5,7 +5,7 @@ import { CONST_1, CONST_2, CONST_3, CONST_4, CONST_5, CONST_6} from "../constant
 
 describe('Satalites', () => {
 
-  test('TEST 1: Se crea obj satelites', async () => {
+  test('TEST 1: Se crea obj satelites.', async () => {
     const response = getJsonSatellites(CONST_1.satellites);
     expect(response).toBeDefined();
   });
