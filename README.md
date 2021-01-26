@@ -42,7 +42,7 @@ POST https://operacion-fuego-quesar.azurewebsites.net/api/topsecret
 ```
 
 
-# api/topsecret_split/{stelite_name} (GET | POST)
+# api/topsecret_split/:id (GET | POST)
 
 ```http
 POST https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/:id 
