@@ -45,10 +45,15 @@ POST https://operacion-fuego-quesar.azurewebsites.net/api/topsecret
 # api/topsecret_split/{stelite_name} (GET | POST)
 
 ```http
-POST https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/{stelite_name} (kenobi, skywalker, sato)
+POST https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/:id 
 ```
 
 ### Example Request
+
+### :id
+```text
+:id kenobi | skywalker | sato
+```
 ### Body
 ```json
 {
@@ -68,9 +73,12 @@ POST https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/{steli
 ```
 
 ```http
-GET https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/{stelite_name} (kenobi, skywalker, sato)
+GET https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/:id 
 ```
-
+### :id
+```text
+:id kenobi | skywalker | sato
+```
 ### Response
 ```json
 {
