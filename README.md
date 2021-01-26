@@ -75,10 +75,6 @@ kenobi | skywalker | sato
 ```http
 GET https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/:id 
 ```
-### :id
-```text
-kenobi | skywalker | sato
-```
 ### Response
 ```json
 {
