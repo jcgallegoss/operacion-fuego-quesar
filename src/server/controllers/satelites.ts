@@ -98,7 +98,7 @@ const validLenMessages = (maxLen: number, arr: string[]) => {
   return arr.concat(Array.from({length: (maxLen-arr.length)}, () => ''));
 }
 
-export { 
+export {
   topsecretSOS,
   getJsonSatellites,
   GetLocation,
