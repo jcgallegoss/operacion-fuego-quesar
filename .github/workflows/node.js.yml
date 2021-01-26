@@ -28,6 +28,6 @@ jobs:
       run: |
         npm install
         npm run test-clear-cache
-        npm run test:coverage
+        npm run test
       env:
         CI: true
