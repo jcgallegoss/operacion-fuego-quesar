@@ -4,7 +4,7 @@ import { prop, modelOptions } from '@typegoose/typegoose';
 export class SatelitesModel {
     /** Id de mongo */
     _id: string;
-    
+
     /** Nombre del satelite */
     @prop({ required: true })
     name: string;
