@@ -32,4 +32,4 @@ jobs:
         app-name: 'operacion-fuego-quesar'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_b5edc1e32eaf417a91ef4525488466b4 }}
-        package: ./dist
+        package: .
