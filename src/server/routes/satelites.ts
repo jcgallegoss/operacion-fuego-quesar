@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import { topsecretSOS } from '../controllers/satelites';
 
 const satelites = Router();
 
-satelites.post('/topsecret', (req: any, res: any)=>{
-    res.status(200).send('Saludos, meter logica de endpoint topsecret');
-});
+satelites.post('/topsecret', topsecretSOS);
 
 export default satelites;
