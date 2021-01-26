@@ -30,7 +30,7 @@ describe('Satalites', () => {
       });
   });
 
-  test('TEST 3: No se pudo decifrar el mensje', async (done) => {
+  test('TEST 3: No se pudo decifrar el mensje.', async (done) => {
     request(app)
       .post('/api/topsecret')
       .send(CONST_6)
