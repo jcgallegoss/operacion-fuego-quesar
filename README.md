@@ -52,7 +52,7 @@ POST https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/:id
 
 ### :id
 ```text
-:id kenobi | skywalker | sato
+kenobi | skywalker | sato
 ```
 ### Body
 ```json
@@ -77,7 +77,7 @@ GET https://operacion-fuego-quesar.azurewebsites.net/api/topsecret_split/:id
 ```
 ### :id
 ```text
-:id kenobi | skywalker | sato
+kenobi | skywalker | sato
 ```
 ### Response
 ```json
