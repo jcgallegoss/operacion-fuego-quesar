@@ -63,14 +63,14 @@ const validLenMessages = (maxLen: number, arr: string[]) => {
 
 const getJsonSatellites = (satellites: any) => {
     const objSatelites: any = {};
-  
+
     satellites.forEach((s: Satelite) => {
       objSatelites[s.name] = {
         distance: s.distance,
         message: s.message
       };
     });
-  
+
     return objSatelites;
   }
 

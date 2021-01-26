@@ -12,13 +12,13 @@ const topsecretSOS_split = async (req: Request, res: Response) => {
   try {
 
     await db.connectToMongo();
-    
+
     if(req.method === 'POST'){
       const sateliteReq = await satelitesModel.findOneAndUpdate(
         {'name': req.params.id},
         {'distance': req.body.distance, 'message': req.body.message}
       );
-  
+
       if(!sateliteReq){
         await satelitesModel.create({
           'name': req.params.id,
@@ -30,7 +30,7 @@ const topsecretSOS_split = async (req: Request, res: Response) => {
     }
 
     const dbSatelites = await satelitesModel.find({});
-    
+
     if(dbSatelites.length !== 3){
       throw Error ('no hay suficiente información');
     }

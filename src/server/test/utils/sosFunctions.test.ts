@@ -8,7 +8,7 @@ describe('SOS Functions', () => {
     const response = getJsonSatellites(CONST_1.satellites);
     expect(response).toBeDefined();
   });
-  
+
   test('TEST 2: Calcula coordenadas desde ditancias', async () => {
     const response = GetLocation(CONST_2.distanceKenobi, CONST_2.distanceSkywalker, CONST_2.distanceSato);
     expect(response).toBeDefined();
