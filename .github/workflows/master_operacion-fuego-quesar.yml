@@ -23,11 +23,13 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
-
+        npm run build --if-present
+        npm run test --if-present
+      working-directory: ./dist
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'operacion-fuego-quesar'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_b5edc1e32eaf417a91ef4525488466b4 }}
-        package: .
+        package: ./dist
