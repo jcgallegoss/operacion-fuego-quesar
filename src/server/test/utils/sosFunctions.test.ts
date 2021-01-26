@@ -4,7 +4,7 @@ import { CONST_1, CONST_2, CONST_4, CONST_5} from "../constants";
 
 describe('SOS Functions', () => {
 
-  test('TEST 1: Se crea obj satelites.', async () => {
+  test('TEST 1: Se crea obj satelites', async () => {
     const response = getJsonSatellites(CONST_1.satellites);
     expect(response).toBeDefined();
   });
