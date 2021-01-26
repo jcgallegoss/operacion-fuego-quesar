@@ -1,14 +1,9 @@
+import app from '../../app';
+import request from 'supertest';
 import { getJsonSatellites, GetLocation, validLenMessages, GetMessage } from '../../controllers/satelites';
 import { CONST_1, CONST_2, CONST_3, CONST_4, CONST_5, CONST_6} from "../constants";
-import request from 'supertest';
-import dotenv from "dotenv";
-import app from '../../app';
-dotenv.config();
 
 describe('Satalites', () => {
-
-  const port = process.env.PORT;
-  app.listen(port);
 
   test('TEST 1: Se crea obj satelites', async () => {
     const response = getJsonSatellites(CONST_1.satellites);
@@ -68,5 +63,4 @@ describe('Satalites', () => {
           return done();
       });
   });
-
 });
